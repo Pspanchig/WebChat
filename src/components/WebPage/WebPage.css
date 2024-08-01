@@ -1,0 +1,119 @@
+:root{
+    --Color-1: #468585;
+    --Color-2: #50B498;
+    --Color-3: #9CDBA6;
+    --Color-4: #DEF9C4;
+}
+body{
+    margin: 0;
+}
+.MainWebPage{
+    display: flex;
+    flex-direction: column;
+}
+.MainNav{
+    margin-top: 1em;
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    flex-direction: row;
+    /* background-color: red;     */
+}
+.MainNav a{
+    color: black;
+    text-decoration: none;
+}
+
+.NavList{
+    display: flex;    
+}
+.WebLogo{
+    margin-right: 5vh;
+    margin-left: 3vh;
+    padding-right: 1em;
+    border-right: 0.1em solid black;
+}
+.Buttons:last-child {
+    margin-left: auto;
+    /* margin-right: 1vh; */
+}
+.Buttons{    
+    width: 45vh;    
+}
+.Buttons button{
+    margin-inline: .5vh;
+}
+.Buttons button:hover{
+    background-color: var(--Color-2);
+    color: white;
+    transition: 1s;
+}
+.LoginButton, .RegisterButton{
+    
+    cursor: pointer;
+    padding: 2vh;
+    padding-left: 6vh;
+    padding-right: 6vh;
+    border-radius: 0.5em;
+    
+    border: 3px solid var(--Color-1);
+    background-color: white;
+}
+
+.WebIntro{
+    /* background-color: red; */
+    height: auto;
+    width: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.ClassS{
+    text-align: center;
+}
+.ClassS h1{
+    /* width: 15vh; */
+    font-size: 8vh;
+}
+.WebIntroImg{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+    /* background-color: rgb(0, 30, 255); */
+    width: 100vh;    
+    height: auto;
+}
+
+.WebPageArticle{
+    width: auto;
+    height: 85vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;    
+    /* background-color: rgba(255, 0, 0, 0.04); */
+}
+.WebPageArticle{
+    width: auto;
+    height: 85vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;    
+    
+}
+
+.WebPageArticle2{
+    margin-top: 6.6vh;
+    width: auto;
+    height: 100vh;
+    background-color: var(--Color-3);
+}
+
+.TriangleDivision{
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    clip-path: polygon(0 0, 100% 0, 100% 100%);;
+}

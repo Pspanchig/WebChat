@@ -1,0 +1,125 @@
+:root{
+    --Color-1: #468585;
+    --Color-2: #50B498;
+    --Color-3: #9CDBA6;
+    --Color-4: #DEF9C4;
+}
+.mainLogin{
+    height: 100vh;
+    display: flex;
+}
+.loginInformation{
+    height: 100%;
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    /* background-color: red; */
+}
+.loginSignUp{
+    /* border: 4px solid black; */
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    border-radius: 0.3em;
+    margin: 1vh;
+    height: 98%;
+    width: 30%;
+    background: linear-gradient(to right, var(--Color-3),  var(--Color-2));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+ }
+ .loginSignUp h1{
+   color: white;
+   font-size: 8vh;
+   margin-bottom: 0;
+ }
+ .loginSignUp p{
+   text-align: center;
+   margin-top: 1vh;
+   color: white;
+   width: 55vh;
+ }
+ .loginSingUpButton{
+   cursor: pointer;
+   margin-top: 5vh;
+   border: none;
+   height: 10vh;
+   width: 30vh;
+   border-radius: 3em;
+   box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+ }
+ #forgPass{
+   text-decoration: underline;
+   font-size: 2vh;
+ }
+ .forgotPass{
+   cursor: pointer;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   width: 40vh;
+   height: 5vh;
+   margin-top: 4vh;
+ }
+ .forgotPass img{
+   width: 5vh;
+ }
+
+.loginLogo{
+    display: flex;
+    align-items: center;
+    height: 20%;
+    /* background-color: rebeccapurple; */
+    margin-left: 1em;
+}
+.loginInfo{    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 80%;    
+ }
+ .loginInfo h1{
+    font-size: 8vh;
+    margin-bottom: 2vh;
+ }
+ .loginInfo p{
+    margin-top: 1vh;
+ }
+ .loginInfo hr{
+    margin-top: 2vh;
+    width: 60%;    
+ }
+ .loginInputs{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 5vh;
+ }
+ .loginInfo img{
+    width: 3vh;
+    margin-right: 3vh;
+ }
+ .loginInput{
+    margin: 1vh;
+    width: 45vh;
+    height: 5vh;
+    border: none;
+    border-radius: 1em;    
+    background-color: rgb(221, 221, 221);    
+    text-align: center;
+ }
+ .loginSubmitButton{
+    margin: 3vh;
+    border-radius: .5em;
+    color: white;
+    height: 5vh;
+    width: 25vh;
+    border: none;
+    background-color: var(--Color-2);
+ } 
+ .loginGoBack{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+ }

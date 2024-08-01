@@ -1,0 +1,33 @@
+.BunchOfImages1 img {
+    margin-inline: 4vh;
+    width: 15vh;
+    border-radius: 1em;
+    overflow: hidden;
+}
+.ImgTrack {
+    display: flex;
+    overflow: hidden;
+    /* white-space: nowrap; */
+    /* position: absolute; */
+    width: 85vh;
+
+}
+
+.ImgTrackInner {
+    display: flex;
+    -webkit-animation: scroll1 20s linear infinite;
+    animation: scroll1 20s linear infinite;
+    
+}
+
+
+@keyframes scroll1 {
+    0% {
+        -webkit-transform: translateX(0);
+        transform: translateX(0);
+    }
+    30% {
+        -webkit-transform: translateX(calc(-100%));
+        transform: translateX(calc(-100%));
+    }
+}
