@@ -1,5 +1,6 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useState } from 'react'
 
 import pointer from './assets/pointer.svg'
 import forgot from './assets/forgotPass.svg'
@@ -8,12 +9,28 @@ import './login.css'
 
 const Login = () => {
 
+  const [forgotPass, setForgotPass] = useState(false)
   const navigate = useNavigate();
   const goBack = () => { navigate('/')};
+  const goToRegister = () => { navigate('/register')};
+
+  const displayForgotPassword = () =>{
+    setForgotPass(!forgotPass);
+  } 
+  
 
   return (    
     <>
       <main className='mainLogin'>
+        {
+          forgotPass == true &&(
+            <section className='forgotPassblur' id='forgotPassblur'>
+              <span className='forgotPassPopUp'>
+                <button onClick={displayForgotPassword}>Cerrar</button>
+              </span>
+            </section>
+          )
+        }
         <section className='loginInformation'>
           <div className='loginLogo'>
             <p>Logo WebChat</p>
@@ -38,9 +55,9 @@ const Login = () => {
         <section className='loginSignUp'>
             <h1>New Here?</h1>
             <p>create a new account and find many people to talk to</p>
-            <button className='loginSingUpButton'>Sing Up!</button>
+            <button onClick={goToRegister} className='loginSingUpButton'>Sing Up!</button>
 
-            <div className='forgotPass'>
+            <div className='forgotPass' onClick={displayForgotPassword}>
               <img src={forgot} alt="" />
               <p id='forgPass'>Or did you forgot your Password?</p>
             </div>

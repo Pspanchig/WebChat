@@ -11,6 +11,7 @@ const WebPage = () => {
 
     const navigate = useNavigate();
     const goToLogin = () =>{navigate('/login')}
+    const goToRegister = () =>{navigate('/register')}
 
   return (
    <>
@@ -34,7 +35,7 @@ const WebPage = () => {
 
         <div className='Buttons'>
             <button className='LoginButton' onClick={goToLogin}>Login</button>
-            <button className='RegisterButton'>Register</button>
+            <button className='RegisterButton' onClick={goToRegister}>Register</button>
         </div>
    </nav>
 
