@@ -16,42 +16,114 @@ const Register = () => {
   const [ip, setIp] = useState(location.hostname);  
   const [created, setCreated] = useState(false);
   const [blank, setBlank] = useState(false);
+  const [wrongPass, setWrongPass] = useState(false);
+  const [duplicateName, setDuplicateName] = useState(false);
+  const [duplicateEmail, setDuplicateEmail] = useState(false);
 
   const navigate = useNavigate();
   const goBack = () => { navigate('/')};
   const goToLogin = () => { navigate('/login')};
 
+  // CHECKKKKKKKKKKKKKKKKKKKKKKKKKKKK
 
+  // const checkEmail = (email) =>{    
+  //   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  //   return emailRegex.test(email);
+    
+  // }
   const sendEmail = () =>{
     emailjs.sendEmail()
   }
-
+  
+  // get the ip of the person creating an account
   const getIP = async() =>{
-    const response = await fetch('https://api.ipify.org?format=json');
+    const response = await fetch('https://api64.ipify.org?format=json');
     const data = await response.json();
     setIp(data.ip);
+    console.log('log')
+    console.log(data.ip)
   }
-
+  // get all the users from the data base
+  const getAllUsers = async() =>{
+    const response = await fetch('http://localhost:8080/GetUsers')
+    const data = await response.json();
+    return data;
+  }
+  //check there is no account with the same name
+  const checkNoDuplicateNames = async () => {
+    const users = await getAllUsers();
+    const search = users.find(user => user.username === username);
+    const isUserFound = !!search;
+  
+    if (isUserFound) {
+      setDuplicateName(true);
+      setTimeout(() => {
+        setDuplicateName(false);
+      }, 3000);
+      return false; 
+    } else {
+      return true; 
+    }
+  }
+  //check there is no account with the same email
+  const checkNoDuplicateEmails = async () => {
+    const users = await getAllUsers();
+    const search = users.find(user => user.email === email);
+    const isUserFound = !!search;
+  
+    if (isUserFound) {
+      setDuplicateEmail(true);
+      setTimeout(() => {
+        setDuplicateEmail(false);
+      }, 3000);
+      return false; 
+    } else {
+      return true; 
+    }
+  }
+  //check all the fields are filled
   const CheckAllFilled = () =>{
     if(username && email && password && confirmPassword) return true;    
-    else return false;
+    else {
+      setBlank(true);
+      
+      setTimeout(() => {
+        setBlank(false);
+      }, 3000);
+      return false
+    };
   }
-
+  //check password and confirm password are the same
   const CheckPasswordConfirmation = () =>{
     if(password === confirmPassword) return true;
-    else return false;
+    else {
+      setWrongPass(true);
+
+      setTimeout(() => {
+        setWrongPass(false);
+      }, 3000);
+      return false
+    };
   }
-
-  const createNewUser = async() =>{
-
+  //create the user and is almost send to the data base
+  const createNewUser = async () => {
     const User = {
       username: username,
       email: email,
       password: password,
       ip: ip
     }
-    
-    if(CheckPasswordConfirmation()){
+  
+    if(CheckPasswordConfirmation() &&
+      CheckAllFilled() &&
+      await checkNoDuplicateNames() &&
+      await checkNoDuplicateEmails()){
+
+      setWrongPass(false);
+      setBlank(false);
+      setDuplicateName(false);
+      setDuplicateEmail(false);
+
       try{
         const response = await fetch('http://localhost:8080/AddUser',{
             method: 'POST',
@@ -75,24 +147,19 @@ const Register = () => {
       setConfirmPassword('');
       setIp('');
     } else{
-      setBlank(true);
-      
-      setTimeout(() => {
-        setBlank(false);
-      }, 3000);
+
     }
 
   }
-    
+  // activate the button which send user to data base
   const sendNewUserToDB = (e) =>{
     e.preventDefault();
     createNewUser();
   }
-  
-  useEffect(() =>{
-    getIP();
-    console.log(ip);
-  }, [])
+    
+  useEffect(() =>{    
+    getIP();  
+  },[])
 
   return (    
     <>
@@ -102,6 +169,7 @@ const Register = () => {
             <p>Logo WebChat</p>
           </div>          
           <div className='registerInfo'>
+            <div className='Warnings'>
             {
               created&&(
                 <span className='AccountCreated'>Account succesfully created</span>
@@ -112,8 +180,26 @@ const Register = () => {
                 <span className='BlankError'>Please fill all the inputs</span>
               )
             }
+            {
+              wrongPass&&(
+                <span className='BlankError'>Both password must match</span>
+              )
+            }
+            {
+              duplicateName&&(
+                <span className='BlankError'>That name alreay exists</span>
+              )
+            }
+            {
+              duplicateEmail&&(
+                <span className='BlankError'>That email alreay exists</span>
+              )
+            }
+            </div>
+            
             <h1>Create an account</h1>
             <hr/>
+            
             <div className='registerInputs'>
             
               <input type="text" placeholder='User' className='registerInput' value={username} onChange={(e) => setUsername(e.target.value)}/>

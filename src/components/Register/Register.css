@@ -132,19 +132,22 @@
    background: linear-gradient(to right, var(--Color-3),  var(--Color-2));
    color: white;
    padding: 2vh;
-   border-radius: 3vh;
-   position: absolute;
-   top: 5vh;
+   border-radius: 3vh;   
 
 }
 .BlankError{
+   margin-inline: 1vh;
    color: white;
    padding: 2vh;
    border-radius: 3vh;
    background: linear-gradient(to right, rgb(194, 142, 45),  rgb(217, 45, 19));
-   position: absolute;
-   top: 5vh;
 }
  #SubmitNewUser{
    cursor: pointer;
+ }
+ .Warnings{
+   position: absolute;
+   top: 5vh;
+   display: flex;
+
  }
