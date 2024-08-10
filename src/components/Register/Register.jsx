@@ -1,10 +1,8 @@
-import React from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useState , useEffect} from 'react'
+import React, { useState, useEffect } from 'react';
+import emailjs from '@emailjs/browser'; 
 
 import pointer from './assets/pointer.svg'
-import forgot from './assets/forgotPass.svg'
-
 import './Register.css'
 
 const Register = () => {
@@ -19,29 +17,54 @@ const Register = () => {
   const [wrongPass, setWrongPass] = useState(false);
   const [duplicateName, setDuplicateName] = useState(false);
   const [duplicateEmail, setDuplicateEmail] = useState(false);
+  const [isValidEmail, setIsValidEmail] = useState(false);
+  
+ 
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    const emailData = {
+      to_name: username,
+      to_email: email,
+      subject: 'Verification code',
+      message: '5451' 
+    };
+
+    emailjs.send('service_q63f8le', 'template_temx6wi', emailData, 'd9Lu4qft3wZcAH2ul')
+      .then((result) => {
+        console.log(result.text);
+        // Optionally, clear the form or show a success message
+      }, (error) => {
+        console.log(error.text);
+        // Handle errors, show an error message to the user
+      });
+  };
 
   const navigate = useNavigate();
   const goBack = () => { navigate('/')};
   const goToLogin = () => { navigate('/login')};
 
-  // CHECKKKKKKKKKKKKKKKKKKKKKKKKKKKK
 
-  // const checkEmail = (email) =>{    
-  //   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  //   return emailRegex.test(email);
+  const checkEmail = (email) =>{    
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const isValid = emailRegex.test(email);    
     
-  // }
-  const sendEmail = () =>{
-    emailjs.sendEmail()
+    if(isValid) return true;
+    else {
+      setIsValidEmail(true);
+      setTimeout(() => {
+        setIsValidEmail(false);
+      }, 3000);
+      return false;
+    }
   }
+
   
   // get the ip of the person creating an account
   const getIP = async() =>{
     const response = await fetch('https://api64.ipify.org?format=json');
     const data = await response.json();
-    setIp(data.ip);
-    console.log('log')
-    console.log(data.ip)
+    setIp(data.ip);    
   }
   // get all the users from the data base
   const getAllUsers = async() =>{
@@ -117,7 +140,8 @@ const Register = () => {
     if(CheckPasswordConfirmation() &&
       CheckAllFilled() &&
       await checkNoDuplicateNames() &&
-      await checkNoDuplicateEmails()){
+      await checkNoDuplicateEmails() &&
+      checkEmail(email)){
 
       setWrongPass(false);
       setBlank(false);
@@ -195,6 +219,11 @@ const Register = () => {
                 <span className='BlankError'>That email alreay exists</span>
               )
             }
+            {
+              isValidEmail&&(
+                <span className='BlankError'>Email is not valid</span>
+              )
+            }
             </div>
             
             <h1>Create an account</h1>
@@ -202,10 +231,16 @@ const Register = () => {
             
             <div className='registerInputs'>
             
-              <input type="text" placeholder='User' className='registerInput' value={username} onChange={(e) => setUsername(e.target.value)}/>
-              <input type="email" placeholder='Email' className='registerInput' value={email} onChange={(e) =>setEmail(e.target.value)}/>
+              <input type="text" placeholder='User' className='registerInput' value={username} onChange={(e) => setUsername(e.target.value)}/>            
+              <div className='emailConfirmation'>
+                <input type="email" placeholder='Email' className='registerInput' id='registerEmail' value={email} onChange={(e) =>setEmail(e.target.value)}/>
+                <button type='submit'>send code</button>
+              </div>
+              
+              
               <input type="password" placeholder='Password' className='registerInput' value={password} onChange={(e) => setPassword(e.target.value)}/>
               <input type="password" placeholder='Repeat password' className='registerInput' value={confirmPassword} onChange={(e) =>setConfirmPassword(e.target.value)}/>
+              <input type="text" placeholder='confirmation code' className='registerInput' value={confirmPassword} onChange={(e) =>setConfirmPassword(e.target.value)}/>
               <span className='confirmationCode'>
                 <input type="password" placeholder='Confirmation code' className='registerInput'/>                
               </span>

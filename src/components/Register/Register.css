@@ -5,6 +5,7 @@
     --Color-4: #DEF9C4;
 }
 .mainRegister{
+    
     height: 100vh;
     display: flex;
 }
@@ -149,5 +150,26 @@
    position: absolute;
    top: 5vh;
    display: flex;
+
+ }
+ .emailConfirmation{
+   display: flex;
+   width: 45vh;
+   align-items: center;
+   justify-content: center;
+   /* background-color: red;    */
+ }
+ .emailConfirmation input{
+   /* width: 100%; */
+ }
+ .emailConfirmation button{
+   cursor: pointer;
+   margin-right: 1vh;
+   border-radius: 1em;
+   color: white;
+   height: 5vh;
+   width: 25vh;
+   border: none;
+   background-color: var(--Color-2);
 
  }

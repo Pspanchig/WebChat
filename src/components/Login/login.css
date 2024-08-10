@@ -109,6 +109,7 @@
     text-align: center;
  }
  .loginSubmitButton{
+   cursor: pointer;
     margin: 3vh;
     border-radius: .5em;
     color: white;
@@ -131,13 +132,61 @@
    /* display: none; */
 }
 .forgotPassPopUp{
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
    border-radius: 0.5em;
    top: 30%;
    left: 39%;
    width: 60vh;
-   height: 30vh;
+   height: 35vh;
    background-color: white;
    position: absolute;
-   box-shadow: blue 0px 0px 0px 2px inset, rgb(255, 255, 255) 10px -10px 0px -3px, rgb(31, 193, 27) 10px -10px, rgb(255, 255, 255) 20px -20px 0px -3px, rgb(255, 217, 19) 20px -20px, rgb(255, 255, 255) 30px -30px 0px -3px, rgb(255, 156, 85) 30px -30px, rgb(255, 255, 255) 40px -40px 0px -3px, rgb(255, 85, 85) 40px -40px;
-   
-}
+   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;   
+ }
+ .forgotPassPopUp p, .forgotPassPopUp h2{
+   margin: 1vh;
+   margin-inline: 3vh;
+ }
+ .forgotPassPopUp p{
+   font-size: 2vh;
+   text-align: center;
+ }
+ .submitMissingPass{
+   margin-top: 3vh;
+   display: flex;   
+   justify-content: center;
+   align-items: center;
+ }
+ .submitMissingPass button{
+   cursor: pointer;
+   /* margin: 3vh; */
+   border-radius: 1em;
+   color: white;
+   height: 5vh;
+   width: 15vh;
+   border: none;
+   background-color: var(--Color-2);
+ }
+ .passMissingInput{
+   margin: 1vh;
+   width: 35vh;
+   height: 5vh;
+   border: none;
+   border-radius: 1em;    
+   background-color: rgb(221, 221, 221);    
+   text-align: center;
+ }
+ .closeMissingPopUp{
+   top: 0vh;
+   right: 0vh;
+   position: absolute;
+   cursor: pointer;
+   border: none;
+   border-radius: 1em;
+   background-color: white;
+ }
+ .closeMissingPopUp img{
+   width: 5vh;
+ }
