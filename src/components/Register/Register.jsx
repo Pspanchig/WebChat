@@ -234,7 +234,7 @@ const Register = () => {
               <input type="text" placeholder='User' className='registerInput' value={username} onChange={(e) => setUsername(e.target.value)}/>            
               <div className='emailConfirmation'>
                 <input type="email" placeholder='Email' className='registerInput' id='registerEmail' value={email} onChange={(e) =>setEmail(e.target.value)}/>
-                <button type='submit'>send code</button>
+                <button onClick={sendEmail}>send code</button>
               </div>
               
               
