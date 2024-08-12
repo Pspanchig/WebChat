@@ -1,0 +1,27 @@
+:root{
+    --Color-1: #468585;
+    --Color-2: #50B498;
+    --Color-3: #9CDBA6;
+    --Color-4: #DEF9C4;
+}
+.NavBar{
+    display: flex;
+    
+    width: 32.5vh;
+    height: 100vh;
+    
+}
+.NavBarList{
+    background-color: var(--Color-1);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: fit-content;
+    margin-top: 0;
+}
+.NavBarItem{
+    color: white;
+    text-decoration: none;
+    padding: 8px 16px;
+    display: block;
+}

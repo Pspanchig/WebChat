@@ -25,11 +25,12 @@ const Register = () => {
 
     const emailData = {
       to_name: username,
-      to_email: email,
+      to_email: 'pxp59340@ucmo.edu',
       subject: 'Verification code',
       message: '5451' 
     };
 
+    console.log(emailData);
     emailjs.send('service_q63f8le', 'template_temx6wi', emailData, 'd9Lu4qft3wZcAH2ul')
       .then((result) => {
         console.log(result.text);
@@ -131,9 +132,10 @@ const Register = () => {
   //create the user and is almost send to the data base
   const createNewUser = async () => {
     const User = {
-      username: username,
+      username: username.toLowerCase(),
       email: email,
       password: password,
+      status: false,
       ip: ip
     }
   

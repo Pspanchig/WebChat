@@ -19,6 +19,7 @@ const Login = () => {
   const navigate = useNavigate();
   const goBack = () => { navigate('/')};
   const goToRegister = () => { navigate('/register')};
+  const goToApp = () => {navigate('/dashboard')}
 
   const displayForgotPassword = () =>{
     setForgotPass(!forgotPass);
@@ -32,9 +33,27 @@ const Login = () => {
 
   const CheckLogin = async() =>{
     const listOfUsers = await getUsers();
-    const checkUsers = listOfUsers.find(user => (user.username === username && user.password === password) || (user.email === username && user.password === password));
+    const checkUsers = listOfUsers.find(user => (user.username === username.toLowerCase() && user.password === password) || (user.email === username && user.password === password));
+
     if(checkUsers){
-      alert("Login Success");
+            
+      const userID = checkUsers.id;      
+      const loggedUser = {
+        username: checkUsers.username,
+        password: checkUsers.password,
+        email: checkUsers.email,
+        status: true,
+        ip: checkUsers.ip
+      }
+      fetch(`http://localhost:8080/updateUser/${userID}`,{
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+          body: JSON.stringify(loggedUser)
+      }).then(goToApp())
+      .catch(error => console.error('Error:', error));
+      localStorage.setItem("currentUser", username.toLowerCase());
     }
     else{      
       const isEmpty = !!(!username && !password);
