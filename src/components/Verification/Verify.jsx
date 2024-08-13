@@ -22,7 +22,7 @@ const Verify = () => {
     const verifyAccount = async() =>{
         const users = await getUsers();
         const currentUser = localStorage.getItem('currentUser');
-        const userList = users.find(user => (user.username === currentUser && user.status === true))
+        const userList = users.find(user => ((user.username === currentUser && user.status === true) || (user.email === currentUser && user.status === true)))
 
         if(userList){
             setTimeout(() => {                

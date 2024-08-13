@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=New+Amsterdam&family=Quicksand:wght@300..700&display=swap');
 :root{
     --Color-1: #468585;
     --Color-2: #50B498;
@@ -5,23 +6,101 @@
     --Color-4: #DEF9C4;
 }
 .NavBar{
-    display: flex;
+    display: flex;  
     
-    width: 32.5vh;
+    width: 30vh;
     height: 100vh;
     
 }
 .NavBarList{
     background-color: var(--Color-1);
     display: flex;
-    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;  
+    
     height: 100%;
-    width: fit-content;
+    width: 30%;
+    padding: 0;
     margin-top: 0;
+    transition: 1s;
+}
+#logout{
+    margin-top: auto;
+}
+.NavBarList div{
+    margin-bottom: 5vh;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "New Amsterdam", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    
+}
+.NavBarList #igms{
+    width: 4vh;
+    margin-right: 1vh;
+    /* position: absolute; */
+    margin-top: 5vh;
+    transition: 1s;
+}
+.NavBarList #logoNavbar{
+    font-size: 5vh;
+    display: none;
 }
 .NavBarItem{
+    display: flex;
+    /* background-color: red; */
+    align-items: center;
     color: white;
+    width: 20vh;
     text-decoration: none;
     padding: 8px 16px;
+    margin-bottom: 3vh;
+}
+.NavBarItem p{
+    display: none;
+}
+.NavBarItem img{
+    width: 5vh;
+    margin-left: 7vh;
+    transition: 1s;    
+}
+
+
+.NavBarList:hover{
+    width: 100%;
+    transition: 1s;
+}
+
+.NavBarList:hover .NavBarItem p{
     display: block;
+    transition: 1s;
+}
+.NavBarList:hover .NavBarItem img{
+    margin-left: 0vh;    
+    margin-right: 2vh;  
+    transition: 1s;  
+}
+
+
+.NavBarList:hover #igms{
+    width: 4vh;
+    margin-right: 1vh;
+    /* position: absolute; */
+    margin-top: 5vh;
+    transition: 1s;
+}
+
+ /* .NavBarList:hover #logoNavbar{
+    margin-top: 5vh;
+    font-size: 5vh;
+    display: block;
+}  */
+
+.NavBarItem:hover{
+    font-size: 2.5vh;
+    cursor: pointer;
 }
